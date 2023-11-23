@@ -22,11 +22,11 @@ namespace DemoAPITest.Utility
                 case "list users":
                     urlPath = "api/users?page=2";
                     break;
-                case "single user not found":
+                case "single user":
                 case "delete":
                     urlPath = "api/users/2";
                     break;
-                case "single user":
+                case "single user not found":
                     urlPath = "api/users/23";
                     break;
                 case "single resource not found":
