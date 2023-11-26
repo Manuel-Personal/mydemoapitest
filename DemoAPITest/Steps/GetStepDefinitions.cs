@@ -19,6 +19,26 @@ namespace DemoAPITest.Steps
         private RestResponse response;
         private HttpStatusCode statusCode;
 
+        private void VerifyUserList(Table table)
+        {
+            JObject contentResponse = JObject.Parse(response.Content);
+            JArray dataArrayFromResponse = (JArray)contentResponse["data"];
+            int currentIndex = 0;
+
+            foreach (var row in table.Rows)
+            {
+                var data = row.CreateInstance<DataModel>();
+
+                Assert.AreEqual(data.id, dataArrayFromResponse[currentIndex]["id"].ToString());
+                Assert.AreEqual(data.email, dataArrayFromResponse[currentIndex]["email"].ToString());
+                Assert.AreEqual(data.first_name, dataArrayFromResponse[currentIndex]["first_name"].ToString());
+                Assert.AreEqual(data.last_name, dataArrayFromResponse[currentIndex]["last_name"].ToString());
+                Assert.AreEqual(data.avatar, dataArrayFromResponse[currentIndex]["avatar"].ToString());
+
+                currentIndex++;
+            }
+        }
+
         [Then(@"validate correct page details are returned")]
         public void ThenValidateCorrectPageDetailsAreReturned(Table table)
         {
@@ -37,7 +57,7 @@ namespace DemoAPITest.Steps
         [Then(@"validate that users are listed")]
         public void ThenValidateThatUsersAreListed(Table table)
         {
-            throw new PendingStepException();
+            VerifyUserList(table);
         }
 
         [When(@"user sends '([^']*)' request")]
@@ -57,18 +77,7 @@ namespace DemoAPITest.Steps
         [Then(@"validate that single user is found")]
         public async void ThenValidateThatSingleUserIsFound(Table table)
         {
-            var data = table.CreateInstance<DataModel>();
-
-            JObject contentResponse = JObject.Parse(response.Content);
-            JObject contentData = (JObject)contentResponse["data"];
-
-            Assert.AreEqual(data.id, contentData["id"].ToString());
-            Assert.AreEqual(data.email, contentData["email"].ToString());
-            Assert.AreEqual(data.first_name, contentData["first_name"].ToString());
-            Assert.AreEqual(data.last_name, contentData["last_name"].ToString());
-            Assert.AreEqual(data.avatar, contentData["avatar"].ToString());
-
-            Helper.VerifyStatusResponse("200", response);
+            VerifyUserList(table);
         }
     }
 }
