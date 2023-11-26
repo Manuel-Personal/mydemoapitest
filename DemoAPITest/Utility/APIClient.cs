@@ -59,38 +59,7 @@ namespace DemoAPITest.Utility
         public async Task<RestResponse> ExecuteGetRequest(String requestName)
         {
             var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
-            var request = CreateGetRequest();
-            request.RequestFormat = DataFormat.Json;
 
-            var response = await Helper.GetResponseAsync(client, request);
-
-            return response;
-        }
-
-        public async Task<RestResponse> ExecutePostRequest(String requestName, dynamic payload)
-        {
-            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
-            var request = CreatePostRequest(payload);
-            request.RequestFormat = DataFormat.Json;
-
-            var response = await Helper.GetResponseAsync(client, request);
-
-            return response;
-        }
-
-        public async Task<RestResponse> ExecuteDeleteRequest(String requestName)
-        {
-            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
-            var request = CreateDeleteRequest();
-            request.RequestFormat = DataFormat.Json;
-
-            var response = await Helper.GetResponseAsync(client, request);
-
-            return response;
-        }
-
-        public RestRequest CreateGetRequest()
-        {
             request = new RestRequest()
             {
                 Method = Method.Get
@@ -102,10 +71,42 @@ namespace DemoAPITest.Utility
                 { "Content-Type", "application/json" }
             });
 
-            return request;
+            request.RequestFormat = DataFormat.Json;
+
+            var response = await Helper.GetResponseAsync(client, request);
+
+            return response;
         }
 
-        public RestRequest CreatePostRequest<T>(T payload) where T : class
+        public async Task<RestResponse> ExecutePostRequest(String requestName, dynamic payload)
+        {
+            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
+            var request = BuuldRequestPayload(payload);
+            request.RequestFormat = DataFormat.Json;
+
+            var response = await Helper.GetResponseAsync(client, request);
+
+            return response;
+        }
+
+        public async Task<RestResponse> ExecuteDeleteRequest(String requestName)
+        {
+            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
+
+            request = new RestRequest()
+            {
+                Method = Method.Delete
+            };
+            request.AddHeader("Accept", "application/json");
+
+            request.RequestFormat = DataFormat.Json;
+
+            var response = await Helper.GetResponseAsync(client, request);
+
+            return response;
+        }
+
+        public RestRequest BuuldRequestPayload<T>(T payload) where T : class
         {
             request = new RestRequest()
             {
@@ -116,16 +117,6 @@ namespace DemoAPITest.Utility
             request.AddBody(payload);
             request.RequestFormat = DataFormat.Json;
 
-            return request;
-        }
-
-        public RestRequest CreateDeleteRequest()
-        {
-            request = new RestRequest()
-            {
-                Method = Method.Delete
-            };
-            request.AddHeader("Accept", "application/json");
             return request;
         }
     }
