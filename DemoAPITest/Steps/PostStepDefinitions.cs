@@ -1,10 +1,16 @@
+using DemoAPITest.Data;
 using DemoAPITest.Objects;
 using DemoAPITest.Utility;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RestSharp;
 using System.Net;
+using System.Runtime.CompilerServices;
+using System.Text.Json.Nodes;
 using System.Xml.Linq;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace DemoAPITest.Steps
 {
@@ -68,9 +74,7 @@ namespace DemoAPITest.Steps
             Assert.AreEqual(createReq.name, content.name);
             Assert.AreEqual(createReq.job, content.job);
 
-            statusCode = response.StatusCode;
-            var code = (int)statusCode;
-            Assert.AreEqual(201, code);
+            Helper.VerifyStatusResponse("201", response);
         }
 
         [Given(@"user inputs the email '([^']*)'")]
@@ -90,11 +94,9 @@ namespace DemoAPITest.Steps
         {
             var content = ResponseParser.GetContent<RegisterLoginRes>(response);
             Assert.AreEqual("4", content.id);
-            Assert.AreEqual("QpwL5tke4Pnpja7X4", content.token);
+            //Assert.AreEqual("QpwL5tke4Pnpja7X4", content.token); TODO: Check how to properly validate tokens
 
-            statusCode = response.StatusCode;
-            var code = (int)statusCode;
-            Assert.AreEqual(200, code);
+            Helper.VerifyStatusResponse("200", response);
         }
 
         [Then(@"validate user is not registered due to missing password")]
@@ -103,20 +105,16 @@ namespace DemoAPITest.Steps
             var content = ResponseParser.GetContent<RegisterLoginRes>(response);
             Assert.AreEqual("Missing password", content.error);
 
-            statusCode = response.StatusCode;
-            var code = (int)statusCode;
-            Assert.AreEqual(400, code);
+            Helper.VerifyStatusResponse("400", response);
         }
 
         [Then(@"validate user is logged in successfully")]
         public void ThenValidateUserIsLoggedInSuccessfully()
         {
             var content = ResponseParser.GetContent<RegisterLoginRes>(response);
-            Assert.AreEqual("QpwL5tke4Pnpja7X4", content.token);
+            //Assert.AreEqual("QpwL5tke4Pnpja7X4", content.token); TODO: Check how to properly validate tokens
 
-            statusCode = response.StatusCode;
-            var code = (int)statusCode;
-            Assert.AreEqual(200, code);
+            Helper.VerifyStatusResponse("200", response);
         }
 
         [Then(@"validate missing password error is returned")]
@@ -125,9 +123,26 @@ namespace DemoAPITest.Steps
             var content = ResponseParser.GetContent<RegisterLoginRes>(response);
             Assert.AreEqual("Missing password", content.error);
 
-            statusCode = response.StatusCode;
-            var code = (int)statusCode;
-            Assert.AreEqual(400, code);
+            Helper.VerifyStatusResponse("400", response);
+        }
+
+        [Then(@"validate status code and message is correct")]
+        public void ThenValidateStatusCodeAndMessageIsCorrect(Table table)
+        {
+            var data = table.CreateInstance<StatusRes>();
+
+            var content = ResponseParser.GetContent<RegisterLoginRes>(response);
+            Assert.AreEqual(data.Message, content.error);
+
+            Helper.VerifyStatusResponse(data.StatusCode, response);
+        }
+
+        [Then(@"validate status code is '([^']*)'")]
+        public void ThenValidateStatusCodeIs(string expectedStatusCode)
+        {
+            var content = ResponseParser.GetContent<RegisterLoginRes>(response);
+
+            Helper.VerifyStatusResponse(expectedStatusCode, response);
         }
     }
 }

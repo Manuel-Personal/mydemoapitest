@@ -1,60 +1,31 @@
-﻿using RestSharp;
+﻿using NUnit.Framework;
+using RestSharp;
+using System.Net;
+using TechTalk.SpecFlow;
 
 namespace DemoAPITest.Utility
 {
     public class Helper
     {
-        private RestRequest request;
-
-        public RestClient BuildUrl(string baseUrl, string endpoint)
+        public static RestClient BuildUrl(string baseUrl, string endpoint)
         {
             var url = Path.Combine(baseUrl, endpoint);
             return new RestClient(url);
         }
 
-        public async Task<RestResponse> GetResponseAsync(RestClient client, RestRequest request)
+        public static async Task<RestResponse> GetResponseAsync(RestClient client, RestRequest request)
         {
             return await client.ExecuteAsync(request);
         }
 
-        public RestRequest CreateGetRequest()
+        public static void VerifyStatusResponse(String statusCode, RestResponse response)
         {
-            request = new RestRequest()
-            {
-                Method = Method.Get
-            };
+            HttpStatusCode actualCode = response.StatusCode;
+            var code = (int)actualCode;
 
-            request.AddHeaders(new Dictionary<string, string>
-            {
-                { "Accept", "application/json" },
-                { "Content-Type", "application/json" }
-            });
+            int expectedCode = Int32.Parse(statusCode);
 
-            return request;
-        }
-
-        public RestRequest CreatePostRequest<T>(T payload) where T : class
-        {
-            request = new RestRequest()
-            {
-                Method = Method.Post
-            };
-
-            request.AddHeader("Accept", "application/json");
-            request.AddBody(payload);
-            request.RequestFormat = DataFormat.Json;
-
-            return request;
-        }
-
-        public RestRequest CreateDeleteRequest()
-        {
-            request = new RestRequest()
-            {
-                Method = Method.Delete
-            };
-            request.AddHeader("Accept", "application/json");
-            return request;
+            Assert.AreEqual(expectedCode, code);
         }
     }
 }

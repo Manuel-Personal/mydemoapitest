@@ -23,9 +23,7 @@ namespace DemoAPITest.Steps
         [Then(@"validate that user is deleted")]
         public void ThenValidateThatUserIsDeleted()
         {
-            statusCode = response.StatusCode;
-            var code = (int)statusCode;
-            Assert.AreEqual(204, code);
+            Helper.VerifyStatusResponse("204", response);
         }
     }
 }

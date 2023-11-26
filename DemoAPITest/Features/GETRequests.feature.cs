@@ -95,8 +95,63 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
  testRunner.When("user sends \'list users\' request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "page",
+                            "per_page",
+                            "total",
+                            "total_pages"});
+                table1.AddRow(new string[] {
+                            "2",
+                            "6",
+                            "12",
+                            "2"});
 #line 6
- testRunner.Then("validate that users are listed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("validate correct page details are returned", ((string)(null)), table1, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id",
+                            "email",
+                            "first_name",
+                            "last_name",
+                            "avatar"});
+                table2.AddRow(new string[] {
+                            "7",
+                            "michael.lawson@reqres.in",
+                            "Michael",
+                            "Lawson",
+                            "https://reqres.in/img/faces/7-image.jpg"});
+                table2.AddRow(new string[] {
+                            "8",
+                            "lindsay.ferguson@reqres.in",
+                            "Lindsay",
+                            "Ferguson",
+                            "https://reqres.in/img/faces/8-image.jpg"});
+                table2.AddRow(new string[] {
+                            "9",
+                            "tobias.funke@reqres.in",
+                            "Tobias",
+                            "Funke",
+                            "https://reqres.in/img/faces/9-image.jpg"});
+                table2.AddRow(new string[] {
+                            "10",
+                            "byron.fields@reqres.in",
+                            "Byron",
+                            "Fields",
+                            "https://reqres.in/img/faces/10-image.jpg"});
+                table2.AddRow(new string[] {
+                            "11",
+                            "george.edwards@reqres.in",
+                            "George",
+                            "Edwards",
+                            "https://reqres.in/img/faces/11-image.jpg"});
+                table2.AddRow(new string[] {
+                            "12",
+                            "rachel.howell@reqres.in",
+                            "Rachel",
+                            "Howell",
+                            "https://reqres.in/img/faces/12-image.jpg"});
+#line 9
+ testRunner.Then("validate that users are listed", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -111,7 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "SingleUser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Single user API", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -121,11 +176,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 20
  testRunner.When("user sends \'single user\' request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
- testRunner.Then("validate that single user is found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id",
+                            "email",
+                            "first_name",
+                            "last_name",
+                            "avatar"});
+                table3.AddRow(new string[] {
+                            "2",
+                            "janet.weaver@reqres.in",
+                            "Janet",
+                            "Weaver",
+                            "https://reqres.in/img/faces/2-image.jpg"});
+#line 21
+ testRunner.Then("validate that single user is found", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -140,7 +207,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "SingleUserNotFound"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Single user not found API", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 14
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -150,10 +217,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 27
  testRunner.When("user sends \'single user not found\' request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 28
  testRunner.Then("validate that single user is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -169,7 +236,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "SingleResourceNotFound"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Single resource not found API", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -179,10 +246,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 32
  testRunner.When("user sends \'single resource not found\' request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 33
  testRunner.Then("validate that single resource is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

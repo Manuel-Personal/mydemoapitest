@@ -18,7 +18,9 @@ Scenario: Register successful API
 Scenario: Register unsuccessful API
 	Given user inputs the email 'sydney@fife'
 	When user sends 'register-unsuccessful' post request
-	Then validate user is not registered due to missing password
+	Then validate status code and message is correct
+		| StatusCode | Message          |
+		| 400        | Missing password |
 
 @LoginSuccessful
 Scenario: Login successful API
@@ -31,4 +33,6 @@ Scenario: Login successful API
 Scenario: Login unsuccessful API
 	Given user inputs the email 'peter@klaven'
 	When user sends 'login-unsuccessful' post request
-	Then validate missing password error is returned
+	Then validate status code and message is correct
+		| StatusCode | Message          |
+		| 400        | Missing password |

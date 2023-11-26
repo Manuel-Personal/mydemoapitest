@@ -168,8 +168,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 20
  testRunner.When("user sends \'register-unsuccessful\' post request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "StatusCode",
+                            "Message"});
+                table4.AddRow(new string[] {
+                            "400",
+                            "Missing password"});
 #line 21
- testRunner.Then("validate user is not registered due to missing password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("validate status code and message is correct", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -184,7 +190,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "LoginSuccessful"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login successful API", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -194,16 +200,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 27
  testRunner.Given("user inputs the email \'eve.holt@reqres.in\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 26
+#line 28
  testRunner.And("user inputs the password \'cityslicka\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 27
+#line 29
  testRunner.When("user sends \'login-successful\' post request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 28
+#line 30
  testRunner.Then("validate user is logged in successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -219,7 +225,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "LoginUnsuccessful"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login unsuccessful API", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 31
+#line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -229,14 +235,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 32
+#line 34
  testRunner.Given("user inputs the email \'peter@klaven\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 33
+#line 35
  testRunner.When("user sends \'login-unsuccessful\' post request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 34
- testRunner.Then("validate missing password error is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "StatusCode",
+                            "Message"});
+                table5.AddRow(new string[] {
+                            "400",
+                            "Missing password"});
+#line 36
+ testRunner.Then("validate status code and message is correct", ((string)(null)), table5, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
