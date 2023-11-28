@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DemoAPITest.Data
 {
-    public class UserListModel
+    public class PageInfoModel
     {
         public string page { get; set; }
         public string per_page { get; set; }

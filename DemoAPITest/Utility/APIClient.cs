@@ -10,56 +10,23 @@ namespace DemoAPITest.Utility
         {
         }
 
-        private static string baseUrl = "https://reqres.in/";
-
-        private String GetURLPath(String requestName)
+        public async Task<RestResponse> ExecuteDELETE(String requestURL)
         {
-            String urlPath = "";
-
-            switch(requestName.ToLower())
+            request = new RestRequest()
             {
-                case "list users":
-                    urlPath = "api/users?page=2";
-                    break;
+                Method = Method.Delete
+            };
+            request.AddHeader("Accept", "application/json");
 
-                case "single user":
-                case "delete":
-                    urlPath = "api/users/2";
-                    break;
+            request.RequestFormat = DataFormat.Json;
 
-                case "single user not found":
-                    urlPath = "api/users/23";
-                    break;
+            var response = await CommonUtils.GetResponseAsync(new RestClient(requestURL), request);
 
-                case "single resource not found":
-                    urlPath = "api/unknown/23";
-                    break;
-
-                case "create":
-                    urlPath = "api/users";
-                    break;
-
-                case "register-successful":
-                case "register-unsuccessful":
-                    urlPath = "api/register";
-                    break;
-
-                case "login-successful":
-                case "login-unsuccessful":
-                    urlPath = "api/login";
-                    break;
-
-                default:
-                    break;
-            }
-
-            return urlPath;
+            return response;
         }
 
-        public async Task<RestResponse> ExecuteGetRequest(String requestName)
+        public async Task<RestResponse> ExecuteGET(String requestURL)
         {
-            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
-
             request = new RestRequest()
             {
                 Method = Method.Get
@@ -73,40 +40,22 @@ namespace DemoAPITest.Utility
 
             request.RequestFormat = DataFormat.Json;
 
-            var response = await Helper.GetResponseAsync(client, request);
+            var response = await CommonUtils.GetResponseAsync(new RestClient(requestURL), request);
 
             return response;
         }
 
-        public async Task<RestResponse> ExecutePostRequest(String requestName, dynamic payload)
+        public async Task<RestResponse> ExecutePOST(String requestURL, dynamic payload)
         {
-            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
-            var request = BuuldRequestPayload(payload);
+            var request = BuildRequestPayload(payload);
             request.RequestFormat = DataFormat.Json;
 
-            var response = await Helper.GetResponseAsync(client, request);
+            var response = await CommonUtils.GetResponseAsync(new RestClient(requestURL), request);
 
             return response;
         }
 
-        public async Task<RestResponse> ExecuteDeleteRequest(String requestName)
-        {
-            var client = Helper.BuildUrl(baseUrl, GetURLPath(requestName));
-
-            request = new RestRequest()
-            {
-                Method = Method.Delete
-            };
-            request.AddHeader("Accept", "application/json");
-
-            request.RequestFormat = DataFormat.Json;
-
-            var response = await Helper.GetResponseAsync(client, request);
-
-            return response;
-        }
-
-        public RestRequest BuuldRequestPayload<T>(T payload) where T : class
+        public RestRequest BuildRequestPayload<T>(T payload) where T : class
         {
             request = new RestRequest()
             {
