@@ -8,7 +8,8 @@ PROJECT STRUCTURE/DIRECTORIES
 Data - contains the object classes that represent the different request and response for each API calls tested.<br>
 Features - contains the feature files for the selected API calls. These were broken down into 3 different files, namely, for the Users, Register, and Login APIs.<br>
 Steps - contains all the step definitions for all used steps in the feature files.<br>
-Utility - contains classes necessary for performing the API calls, utility functions for string processing, and JSON file to handle string constants.
+Utility - contains classes necessary for performing the API calls, utility functions for string processing, and JSON file to handle string constants.<br>
+Settings.json - so far only contains the URL for that hosts the API calls, but any other hardcoded settings should be placed here.
 <br>
 <br>
 
