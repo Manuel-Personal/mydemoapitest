@@ -26,7 +26,7 @@ namespace DemoAPITest.Steps
         [When(@"user uses API endpoint '([^']*)'")]
         public void WhenUserUsesAPIEndpoint(string endpoint)
         {
-            var clientUrl = Path.Combine(DictionaryUtil.GetJsonValue("baseUrl"), endpoint);
+            var clientUrl = Path.Combine(Config.getBaseUrl(), endpoint);
             ScenarioContext.Current.Add("ClientUrl", clientUrl);
         }
 
