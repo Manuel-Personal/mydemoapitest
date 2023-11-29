@@ -92,9 +92,6 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
- testRunner.Given("user uses API endpoint \'login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
@@ -104,11 +101,14 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             "password",
                             "cityslicka"});
-#line 6
- testRunner.And("uses the following details", ((string)(null)), table1, "And ");
+#line 5
+ testRunner.Given("the following details", ((string)(null)), table1, "Given ");
+#line hidden
+#line 9
+ testRunner.When("user uses API endpoint \'login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.When("user sends a POST request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a POST request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.Then("validate correct login response details are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -139,20 +139,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
- testRunner.Given("user uses API endpoint \'login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table2.AddRow(new string[] {
                             "email",
                             "peter@klaven"});
-#line 17
- testRunner.And("uses the following details", ((string)(null)), table2, "And ");
+#line 16
+ testRunner.Given("the following details", ((string)(null)), table2, "Given ");
+#line hidden
+#line 19
+ testRunner.When("user uses API endpoint \'login\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
- testRunner.When("user sends a POST request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a POST request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -161,7 +161,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "error",
                             "Missing password"});
 #line 21
- testRunner.Then("validate error message is correct", ((string)(null)), table3, "Then ");
+ testRunner.Then("validate response body is correct", ((string)(null)), table3, "Then ");
 #line hidden
 #line 24
  testRunner.And("validate response code is \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

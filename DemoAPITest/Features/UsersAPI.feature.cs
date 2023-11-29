@@ -95,10 +95,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given("user uses API endpoint \'users?page=2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user uses API endpoint \'users?page=2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 6
- testRunner.When("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "total_pages",
                             "2"});
 #line 7
- testRunner.Then("validate correct page details are returned", ((string)(null)), table7, "Then ");
+ testRunner.Then("validate response body is correct", ((string)(null)), table7, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "id",
@@ -161,7 +161,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Howell",
                             "https://reqres.in/img/faces/12-image.jpg"});
 #line 13
- testRunner.And("validate that correct user/s are listed", ((string)(null)), table8, "And ");
+ testRunner.And("validate that correct users are listed", ((string)(null)), table8, "And ");
 #line hidden
 #line 21
  testRunner.And("validate response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -192,10 +192,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 25
- testRunner.Given("user uses API endpoint \'users/2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user uses API endpoint \'users/2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 26
- testRunner.When("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "id",
@@ -210,7 +210,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Weaver",
                             "https://reqres.in/img/faces/2-image.jpg"});
 #line 27
- testRunner.Then("validate that correct user/s are listed", ((string)(null)), table9, "Then ");
+ testRunner.Then("validate that correct user is returned", ((string)(null)), table9, "Then ");
 #line hidden
 #line 30
  testRunner.And("validate response code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -241,10 +241,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 34
- testRunner.Given("user uses API endpoint \'users/23\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user uses API endpoint \'users/23\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
- testRunner.When("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
  testRunner.Then("validate response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -275,10 +275,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 40
- testRunner.Given("user uses API endpoint \'unknown/23\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user uses API endpoint \'unknown/23\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 41
- testRunner.When("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 42
  testRunner.Then("validate response code is \'404\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -308,9 +308,6 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 46
- testRunner.Given("user uses API endpoint \'users\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
@@ -320,11 +317,14 @@ this.ScenarioInitialize(scenarioInfo);
                 table10.AddRow(new string[] {
                             "job",
                             "leader"});
-#line 47
- testRunner.And("uses the following details", ((string)(null)), table10, "And ");
+#line 46
+ testRunner.Given("the following details", ((string)(null)), table10, "Given ");
+#line hidden
+#line 50
+ testRunner.When("user uses API endpoint \'users\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 51
- testRunner.When("user sends a POST request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a POST request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 52
  testRunner.Then("validate correct create user details are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -358,10 +358,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 57
- testRunner.Given("user uses API endpoint \'users/2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user uses API endpoint \'users/2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 58
- testRunner.When("user sends a DELETE request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user sends a DELETE request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 59
  testRunner.Then("validate response code is \'204\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

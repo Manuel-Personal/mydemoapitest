@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 
 namespace DemoAPITest.Utility
 {
@@ -10,20 +11,10 @@ namespace DemoAPITest.Utility
         {
         }
 
-        public async Task<RestResponse> ExecuteDELETE(String requestURL)
+        private static Dictionary<string, string> acceptHeader = new Dictionary<string, string>
         {
-            request = new RestRequest()
-            {
-                Method = Method.Delete
-            };
-            request.AddHeader("Accept", "application/json");
-
-            request.RequestFormat = DataFormat.Json;
-
-            var response = await CommonUtils.GetResponseAsync(new RestClient(requestURL), request);
-
-            return response;
-        }
+            { "Accept", "application/json" }
+        };
 
         public async Task<RestResponse> ExecuteGET(String requestURL)
         {
@@ -40,7 +31,22 @@ namespace DemoAPITest.Utility
 
             request.RequestFormat = DataFormat.Json;
 
-            var response = await CommonUtils.GetResponseAsync(new RestClient(requestURL), request);
+            var response = await GetResponseAsync(new RestClient(requestURL), request);
+
+            return response;
+        }
+
+        public async Task<RestResponse> ExecuteDELETE(String requestURL)
+        {
+            request = new RestRequest()
+            {
+                Method = Method.Delete
+            };
+            request.AddHeaders(acceptHeader);
+
+            request.RequestFormat = DataFormat.Json;
+
+            var response = await GetResponseAsync(new RestClient(requestURL), request);
 
             return response;
         }
@@ -50,23 +56,33 @@ namespace DemoAPITest.Utility
             var request = BuildRequestPayload(payload);
             request.RequestFormat = DataFormat.Json;
 
-            var response = await CommonUtils.GetResponseAsync(new RestClient(requestURL), request);
+            var response = await GetResponseAsync(new RestClient(requestURL), request);
 
             return response;
         }
 
-        public RestRequest BuildRequestPayload<T>(T payload) where T : class
+        private RestRequest BuildRequestPayload<T>(T payload) where T : class
         {
             request = new RestRequest()
             {
                 Method = Method.Post
             };
 
-            request.AddHeader("Accept", "application/json");
+            request.AddHeaders(acceptHeader);
             request.AddBody(payload);
             request.RequestFormat = DataFormat.Json;
 
             return request;
+        }
+
+        private static async Task<RestResponse> GetResponseAsync(RestClient client, RestRequest request)
+        {
+            return await client.ExecuteAsync(request);
+        }
+
+        public static T GetContent<T>(RestResponse response)
+        {
+            return JsonConvert.DeserializeObject<T>(response.Content);
         }
     }
 }
